@@ -4,13 +4,19 @@ import (
 	"laundry-api/config"
 	"laundry-api/models"
 	"net/http"
+
 	"github.com/gin-gonic/gin"
+
+	"os"
+	"time"
 
 	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
-	"os"
-	"time"
 )
+
+func CheckApi(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"message": "API is running"})
+}
 
 func Register(c *gin.Context) {
 	var user models.User
@@ -72,7 +78,7 @@ func Login(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"token": tokenString})
 }
 
-//laundrypackages
+// laundrypackages
 func GetPackages(c *gin.Context) {
 	var packages []models.LaundryPackage
 	if err := config.DB.Find(&packages).Error; err != nil {
@@ -123,7 +129,7 @@ func DeletePackage(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "package deleted successfully"})
 }
 
-//contacts
+// contacts
 func GetContacts(c *gin.Context) {
 	var contacts []models.Contact
 	if err := config.DB.Find(&contacts).Error; err != nil {
@@ -178,7 +184,7 @@ func DeleteContact(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "contact deleted successfully"})
 }
 
-//webcontent
+// webcontent
 func GetWebContent(c *gin.Context) {
 	var webContent []models.WebContent
 	if err := config.DB.Find(&webContent).Error; err != nil {

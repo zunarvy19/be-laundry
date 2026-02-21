@@ -1,14 +1,17 @@
-package main 
+package main
 
 import (
 	"laundry-api/config"
 	"laundry-api/controllers"
 	"log"
+
+	// "net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
-func main (){
+func main() {
 	//load env
 	err := godotenv.Load()
 	if err != nil {
@@ -20,6 +23,9 @@ func main (){
 
 	//init gin
 	r := gin.Default()
+
+	// Check API
+	r.GET("/", controllers.CheckApi)
 
 	//register routes
 	r.POST("/register", controllers.Register)
