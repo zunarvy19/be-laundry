@@ -1,20 +1,21 @@
 package main
 
 import (
+	"github.com/gin-gonic/gin"
 	"laundry-api/config"
 	"laundry-api/controllers"
+	"log"
 	"os"
-
-	// "net/http"
-
-	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
 
 func main() {
 	//load env
-	if os.Getenv("ENV") != "production" {
-		godotenv.Load()
+	required := []string{"DB_HOST", "DB_USER", "DB_PASSWORD"}
+
+	for _, v := range required {
+		if os.Getenv(v) == "" {
+			log.Fatalf("%s is required", v)
+		}
 	}
 
 	//connect to database
