@@ -1,19 +1,20 @@
-FROM golang:1.25.4-alpine as builder
+FROM golang:1.25.4-alpine AS builder
 
 WORKDIR /app
 
+// copy files then download
 COPY go.mod go.sum ./
-
 RUN go mod download
 
+// copy all files then build
 COPY . .
-
 RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
+// create image
 FROM alpine:latest
-
 WORKDIR /root/
 
+// copy the binary from the builder stage
 COPY --from=builder /app/app .
 
 EXPOSE 8080
