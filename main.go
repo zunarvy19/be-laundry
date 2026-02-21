@@ -3,7 +3,7 @@ package main
 import (
 	"laundry-api/config"
 	"laundry-api/controllers"
-	"log"
+	"os"
 
 	// "net/http"
 
@@ -13,9 +13,8 @@ import (
 
 func main() {
 	//load env
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
+	if os.Getenv("ENV") != "production" {
+		godotenv.Load()
 	}
 
 	//connect to database
