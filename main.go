@@ -39,29 +39,29 @@ func main() {
 	}))
 
 	// Check API
-	r.GET("api/", controllers.CheckApi)
+	r.GET("/api/", controllers.CheckApi)
 
 	//register routes
-	r.POST("api/register", controllers.Register)
-	r.POST("api/login", controllers.Login)
+	r.POST("/api/register", controllers.Register)
+	r.POST("/api/login", controllers.Login)
 
 	//laundrypackages routes
-	r.GET("api/packages", controllers.GetPackages)
-	r.POST("api/packages", controllers.CreatePackage)
-	r.PUT("api/packages/:id", controllers.UpdatePackage)
-	r.DELETE("api/packages/:id", controllers.DeletePackage)
+	r.GET("/api/packages", controllers.GetPackages)
+	r.POST("/api/packages", controllers.CreatePackage)
+	r.PUT("/api/packages/:id", controllers.UpdatePackage)
+	r.DELETE("/api/packages/:id", controllers.DeletePackage)
 
 	//contacts routes
-	r.GET("api/contacts", controllers.GetContacts)
-	r.POST("api/contacts", controllers.CreateContact)
-	r.PUT("	api/contacts/:id", controllers.UpdateContact)
-	r.DELETE("api/contacts/:id", controllers.DeleteContact)
+	r.GET("/api/contacts", controllers.GetContacts)
+	r.POST("/api/contacts", controllers.CreateContact)
+	r.PUT("/api/contacts/:id", controllers.UpdateContact)
+	r.DELETE("/api/contacts/:id", controllers.DeleteContact)
 
 	//webcontent routes
-	r.GET("api/webcontent", controllers.GetWebContent)
-	r.POST("api/webcontent", controllers.CreateWebContent)
-	r.PUT("api/webcontent/:id", controllers.UpdateWebContent)
-	r.DELETE("api/webcontent/:id", controllers.DeleteWebContent)
+	r.GET("/api/webcontent", controllers.GetWebContent)
+	r.POST("/api/webcontent", controllers.CreateWebContent)
+	r.PUT("/api/webcontent/:id", controllers.UpdateWebContent)
+	r.DELETE("/api/webcontent/:id", controllers.DeleteWebContent)
 
 	//run server
 	r.Run(":9010")
