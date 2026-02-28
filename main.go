@@ -1,11 +1,15 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"laundry-api/config"
-	"laundry-api/controllers"
 	"log"
 	"os"
+	"time"
+
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
+
+	"laundry-api/config"
+	"laundry-api/controllers"
 )
 
 func main() {
@@ -23,6 +27,16 @@ func main() {
 
 	//init gin
 	r := gin.Default()
+
+	// enable CORS
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"}, 
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "Authorization", "Accept"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}))
 
 	// Check API
 	r.GET("/", controllers.CheckApi)
