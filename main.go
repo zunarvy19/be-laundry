@@ -39,7 +39,7 @@ func main() {
 	}))
 
 	// Check API
-	r.GET("/", controllers.CheckApi)
+	r.GET("api/", controllers.CheckApi)
 
 	//register routes
 	r.POST("api/register", controllers.Register)
