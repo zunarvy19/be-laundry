@@ -20,10 +20,10 @@ type LaundryPackage struct {
 	ID               uint           `json:"id" gorm:"primaryKey"`
 	Name             string         `json:"name" gorm:"not null"`
 	Price            float64        `json:"price" gorm:"not null"`
-	PriceLabel       string         `json:"price_label" gorm:"not null"` // e.g "Rp 15k"
-	Unit             string         `json:"unit" gorm:"not null"`        // e.g "/kg"
-	SpecialTreatment string         `json:"special_treatment"`           // e.g "Selesai Besok (24 Jam)"
-	Benefits         pq.StringArray `json:"benefits" gorm:"type:text[]"` // Array of strings (PostgreSQL specific)
+	PriceLabel       string         `json:"price_label" gorm:"not null;default:''"` // e.g "Rp 15k"
+	Unit             string         `json:"unit" gorm:"not null;default:''"`        // e.g "/kg"
+	SpecialTreatment string         `json:"special_treatment"`                      // e.g "Selesai Besok (24 Jam)"
+	Benefits         pq.StringArray `json:"benefits" gorm:"type:text[]"`            // Array of strings (PostgreSQL specific)
 	CreatedAt        time.Time      `json:"created_at"`
 	UpdatedAt        time.Time      `json:"updated_at"`
 }
