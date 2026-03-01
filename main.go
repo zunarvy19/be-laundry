@@ -64,5 +64,5 @@ func main() {
 	r.DELETE("/api/webcontent/:id", controllers.DeleteWebContent)
 
 	//run server
-	r.Run(":9010")
+	r.Run(":8080")
 }

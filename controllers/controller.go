@@ -25,6 +25,10 @@ func Register(c *gin.Context) {
 		return
 	}
 
+	if user.Email == "" {
+		user.Email = user.Username + "@laundry.local"
+	}
+
 	//hash password
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
@@ -51,7 +55,7 @@ func Login(c *gin.Context) {
 
 	//find user
 	var foundUser models.User
-	if err := config.DB.Where("email = ?", user.Email).First(&foundUser).Error; err != nil {
+	if err := config.DB.Where("username = ?", user.Username).First(&foundUser).Error; err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "invalid credentials"})
 		return
 	}
