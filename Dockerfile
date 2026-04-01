@@ -9,6 +9,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o laundry-api main.go
 
 FROM alpine:latest
+RUN apk add --no-cache tzdata
 WORKDIR /app
 
 COPY --from=builder /app/laundry-api .
@@ -16,4 +17,6 @@ COPY --from=builder /app/laundry-api .
 EXPOSE 8080
 
 CMD ["./laundry-api"]
+  
+
   
