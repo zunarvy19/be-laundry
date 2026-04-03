@@ -242,3 +242,58 @@ func DeleteWebContent(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "web content deleted successfully"})
 }
+
+// locations
+func GetLocations(c *gin.Context) {
+	var locations []models.Location
+	if err := config.DB.Find(&locations).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to get locations"})
+		return
+	}
+	c.JSON(http.StatusOK, locations)
+}
+
+func CreateLocation(c *gin.Context) {
+	var location models.Location
+	if err := c.ShouldBindJSON(&location); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := config.DB.Create(&location).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create location"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "location created successfully"})
+}
+
+func UpdateLocation(c *gin.Context) {
+	var location models.Location
+	if err := c.ShouldBindJSON(&location); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := config.DB.Save(&location).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to update location"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "location updated successfully"})
+}
+
+func DeleteLocation(c *gin.Context) {
+	var location models.Location
+	if err := c.ShouldBindJSON(&location); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := config.DB.Delete(&location).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to delete location"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "location deleted successfully"})
+}

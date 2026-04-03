@@ -63,6 +63,12 @@ func main() {
 	r.PUT("/api/webcontent/:id", controllers.UpdateWebContent)
 	r.DELETE("/api/webcontent/:id", controllers.DeleteWebContent)
 
+	//locations routes
+	r.GET("/api/locations", controllers.GetLocations)
+	r.POST("/api/locations", controllers.CreateLocation)
+	r.PUT("/api/locations/:id", controllers.UpdateLocation)
+	r.DELETE("/api/locations/:id", controllers.DeleteLocation)
+
 	//run server
 	r.Run(":8080")
 }

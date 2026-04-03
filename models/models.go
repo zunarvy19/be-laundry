@@ -42,3 +42,14 @@ type WebContent struct {
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
+
+type Location struct {
+	ID        uint      `json:"id" gorm:"primaryKey"`
+	Name      string    `json:"name" gorm:"not null"`
+	Address   string    `json:"address" gorm:"not null"`
+	Latitude  float64   `json:"latitude" gorm:"not null"`
+	Longitude float64   `json:"longitude" gorm:"not null"`
+	IsActive  bool      `json:"is_active" gorm:"default:true"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+}
