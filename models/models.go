@@ -23,6 +23,7 @@ type LaundryPackage struct {
 	PriceLabel       string         `json:"price_label" gorm:"not null;default:''"` // e.g "Rp 15k"
 	Unit             string         `json:"unit" gorm:"not null;default:''"`        // e.g "/kg"
 	SpecialTreatment string         `json:"special_treatment"`                      // e.g "Selesai Besok (24 Jam)"
+	IsMostChosen     bool           `json:"is_most_chosen" gorm:"default:false"`
 	Benefits         pq.StringArray `json:"benefits" gorm:"type:text[]"`            // Array of strings (PostgreSQL specific)
 	CreatedAt        time.Time      `json:"created_at"`
 	UpdatedAt        time.Time      `json:"updated_at"`
